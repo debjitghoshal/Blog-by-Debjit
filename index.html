@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Debjit Ghoshal</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        /* Existing styles... */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
         body {
             font-family: Arial, sans-serif;
@@ -108,6 +109,52 @@
                 font-size: 18px;
             }
         }
+        /* Additions for dynamic navigation */
+        .menu-icon {
+            display: none;
+            float: right;
+            padding: 28px 20px;
+            position: relative;
+            user-select: none;
+        }
+        .menu-icon .nav-icon {
+            background-color: white;
+            display: block;
+            height: 2px;
+            position: relative;
+            transition: background 0.2s ease-out;
+            width: 18px;
+        }
+        .menu-icon .nav-icon:before,
+        .menu-icon .nav-icon:after {
+            background: white;
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            transition: all 0.2s ease-out;
+            width: 100%;
+        }
+        .menu-icon .nav-icon:before {
+            top: 5px;
+        }
+        .menu-icon .nav-icon:after {
+            top: -5px;
+        }
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            nav a {
+                display: none; /* Hide the links */
+                width: 100%;
+                text-align: left;
+            }
+            .menu-icon {
+                display: block; /* Show menu icon */
+            }
+            .nav-active a {
+                display: block; /* Show links when active */
+            }
+        }
     </style>
 </head>
 <body>
@@ -122,8 +169,11 @@
         <a href="#">Resources</a>
         <a href="#">Non-Math Writings</a>
         <a href="#">Contact</a>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="nav-icon"></div>
+        </div>
     </nav>
-    <div class="container">
+   <div class="container">
         <div class="welcome">
             <h2>Greetings and welcome to my blog! </h2>
             <p>I've launched this platform to share my lifelong passion for mathematics and computer scinece through valuable insights. Here, you'll discover a diverse range of resources including articles, notes, problem collections, and more, curated to assist fellow enthusiasts like you.</p>
@@ -149,5 +199,11 @@
     <div class="footer">
         <p>&copy; 2024 &#8734; Mystics. All rights reserved.</p>
     </div>
+    <script>
+        function toggleMenu() {
+            var nav = document.querySelector('nav');
+            nav.classList.toggle('nav-active');
+        }
+    </script>
 </body>
 </html>
